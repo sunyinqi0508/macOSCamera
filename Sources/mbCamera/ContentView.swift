@@ -115,6 +115,18 @@ struct ContentView: View {
                 CameraPreviewView(previewLayer: viewModel.previewLayer, onTap: { point, size in
                     Task { await viewModel.focus(at: point, in: size) }
                 })
+                    .overlay {
+                        #if DEBUG
+                        // Screenshot mode: covers the live feed with a demo scene.
+                        if let backdrop = DebugDemoBackdrop.main {
+                            Image(nsImage: backdrop)
+                                .resizable()
+                                .scaledToFill()
+                                .allowsHitTesting(false)
+                                .clipped()
+                        }
+                        #endif
+                    }
                     .overlay(alignment: pipAlignment) {
                         if viewModel.settings.selectedInput?.type == .screen,
                            viewModel.settings.screenRecording.isPiPEnabled {
@@ -775,6 +787,20 @@ struct ContentView: View {
 }
 
 // MARK: - Components
+
+#if DEBUG
+/// Env-provided stand-in imagery for App Store screenshots
+/// (`MBCAMERA_DEBUG_DEMO_BACKDROP` / `MBCAMERA_DEBUG_DEMO_PIP`); DEBUG-only,
+/// never part of release builds.
+enum DebugDemoBackdrop {
+    static let main: NSImage? = ProcessInfo.processInfo
+        .environment["MBCAMERA_DEBUG_DEMO_BACKDROP"]
+        .flatMap { NSImage(contentsOfFile: $0) }
+    static let pip: NSImage? = ProcessInfo.processInfo
+        .environment["MBCAMERA_DEBUG_DEMO_PIP"]
+        .flatMap { NSImage(contentsOfFile: $0) }
+}
+#endif
 
 /// Gentle grow-on-hover feedback shared by the floating controls.
 private struct HoverScale: ViewModifier {

@@ -89,6 +89,16 @@ struct PiPCameraPreview: View {
             onDragDelta: onDragDelta,
             onDragEnded: onDragEnded
         )
+            .overlay {
+                #if DEBUG
+                if let backdrop = DebugDemoBackdrop.pip {
+                    Image(nsImage: backdrop)
+                        .resizable()
+                        .scaledToFill()
+                        .allowsHitTesting(false)
+                }
+                #endif
+            }
             .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
             .overlay {
                 RoundedRectangle(cornerRadius: 12, style: .continuous)
