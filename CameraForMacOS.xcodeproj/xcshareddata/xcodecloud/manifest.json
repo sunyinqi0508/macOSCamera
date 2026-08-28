@@ -1,0 +1,9 @@
+{
+  "id" : "5aa2cbe5-adcc-4969-90b0-0048c4096840",
+  "targets" : [
+    {
+      "id" : "ed2f3202-32db-4e0a-b604-df907781dc85",
+      "name" : "CameraForMacOS"
+    }
+  ]
+}

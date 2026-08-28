@@ -12,8 +12,8 @@
 .build/
 .swiftpm/
 
-# Xcode — generated project (recreate with `xcodegen generate`) and user state
-CameraForMacOS.xcodeproj/
+# Xcode user state (the .xcodeproj itself is committed — Xcode Cloud needs it;
+# regenerate after editing project.yml with `xcodegen generate`)
 DerivedData/
 xcuserdata/
 *.xcworkspace/xcuserdata/
