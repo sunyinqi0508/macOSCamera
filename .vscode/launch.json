@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:mbCamera}",
+            "name": "Debug mbCamera",
+            "target": "mbCamera",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug mbCamera"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:mbCamera}",
+            "name": "Release mbCamera",
+            "target": "mbCamera",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release mbCamera"
+        }
+    ]
+}

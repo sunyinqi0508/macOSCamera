@@ -1,0 +1,4 @@
+1. **BUG** Could not find camera bug still persists after changing resolution/fps during a video recording, however, it will can now be resolved by resetting everything. Investigate and resolve this error
+2. UI-wise, you may actively resize the window after the video feed was resized. Make sure to move the controls so that they're not occluded
+3. allow moving window by dragging the window content and hiding the title bar, (add a x onscreen button for close if title bar is hidden). These could be tuned in the settings
+4. write me a `.gitignore` file to exclude any artifacts and garbage that could blow up the git repo

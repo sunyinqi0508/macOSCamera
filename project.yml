@@ -1,0 +1,48 @@
+# XcodeGen spec — regenerate the Xcode project with:  xcodegen generate
+name: CameraForMacOS
+options:
+  createIntermediateGroups: true
+  deploymentTarget:
+    macOS: "13.0"
+
+packages:
+  mbCameraPackage:
+    path: .
+
+targets:
+  CameraForMacOS:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources/mbCamera
+      - path: App/Assets.xcassets
+    dependencies:
+      - package: mbCameraPackage
+        product: CameraCore
+    settings:
+      base:
+        PRODUCT_NAME: Camera for macOS
+        PRODUCT_BUNDLE_IDENTIFIER: com.yurika.mbCamera
+        DEVELOPMENT_TEAM: C7F9H59JYH
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_ENTITLEMENTS: scripts/appstore.entitlements
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: App/Info.plist
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SWIFT_VERSION: "6.0"
+        ENABLE_HARDENED_RUNTIME: NO
+        MACOSX_DEPLOYMENT_TARGET: "13.0"
+        COMBINE_HIDPI_IMAGES: YES
+        DEAD_CODE_STRIPPING: YES
+
+schemes:
+  CameraForMacOS:
+    build:
+      targets:
+        CameraForMacOS: all
+    run:
+      config: Debug
+    archive:
+      config: Release

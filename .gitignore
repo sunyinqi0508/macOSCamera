@@ -1,0 +1,35 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor temp files
+*.swp
+*.swo
+*~
+
+# SwiftPM
+.build/
+.swiftpm/
+
+# Xcode and user-local project files
+DerivedData/
+xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcuserdatad/
+*.xcuserstate
+*.moved-aside
+*.pbxuser
+!default.pbxuser
+
+# Build outputs and packaging artifacts
+dist/
+*.app
+*.dSYM
+*.dSYM.zip
+
+# Logs and local caches
+*.log
+*.tmp
+tmp/
+.cache/
