@@ -11,7 +11,7 @@
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
-    <string>Camera</string>
+    <string>mbCamera</string>
     <key>CFBundleDisplayName</key>
     <string>Camera for macOS</string>
     <key>CFBundlePackageType</key>
