@@ -911,17 +911,7 @@ private struct WheelValueControl: View {
 
         return ZStack(alignment: .leading) {
             ForEach(-maxRel...maxRel, id: \.self) { rel in
-                let index = ((center + rel) % count + count) % count
-                let position = CGFloat(rel) - wheelOffset
-                let distance = min(abs(position), 2)
-                Text(entries.indices.contains(index) ? entries[index] : "")
-                    .font(.system(size: distance < 0.5 ? 13 : 11, weight: distance < 0.5 ? .semibold : .medium))
-                    .kerning(1.0)
-                    .lineLimit(1)
-                    .foregroundStyle(distance < 0.5 ? Color.yellow : Color.white)
-                    .opacity(max(0.12, 1.0 - Double(distance) * 0.55))
-                    .shadow(color: .black.opacity(0.6), radius: 2)
-                    .offset(y: position * Self.rowHeight)
+                wheelRow(rel: rel, center: center, entries: entries, count: count)
             }
         }
         .frame(height: Self.rowHeight * 3)
@@ -937,6 +927,31 @@ private struct WheelValueControl: View {
                 endPoint: .bottom
             )
         )
+    }
+
+    /// Precomputed into typed locals: the inline ternary version of this row
+    /// exceeds the type-checker budget on some build hosts (Xcode Cloud, x86_64).
+    private func wheelRow(rel: Int, center: Int, entries: [String], count: Int) -> some View {
+        let index = ((center + rel) % count + count) % count
+        let position: CGFloat = CGFloat(rel) - wheelOffset
+        let distance: CGFloat = min(abs(position), 2)
+        let isCurrent = distance < 0.5
+
+        let text: String = entries.indices.contains(index) ? entries[index] : ""
+        let fontSize: CGFloat = isCurrent ? 13 : 11
+        let fontWeight: Font.Weight = isCurrent ? .semibold : .medium
+        let color: Color = isCurrent ? .yellow : .white
+        let rowOpacity: Double = max(0.12, 1.0 - Double(distance) * 0.55)
+        let yOffset: CGFloat = position * Self.rowHeight
+
+        return Text(text)
+            .font(.system(size: fontSize, weight: fontWeight))
+            .kerning(1.0)
+            .lineLimit(1)
+            .foregroundStyle(color)
+            .opacity(rowOpacity)
+            .shadow(color: .black.opacity(0.6), radius: 2)
+            .offset(y: yOffset)
     }
 
     // MARK: Interaction
