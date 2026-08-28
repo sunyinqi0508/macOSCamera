@@ -12,12 +12,14 @@
 .build/
 .swiftpm/
 
-# Xcode and user-local project files
+# Xcode — generated project (recreate with `xcodegen generate`) and user state
+CameraForMacOS.xcodeproj/
 DerivedData/
 xcuserdata/
 *.xcworkspace/xcuserdata/
 *.xcuserdatad/
 *.xcuserstate
+*.xcresult
 *.moved-aside
 *.pbxuser
 !default.pbxuser
@@ -25,8 +27,15 @@ xcuserdata/
 # Build outputs and packaging artifacts
 dist/
 *.app
+*.pkg
 *.dSYM
 *.dSYM.zip
+
+# Signing material — never commit
+*.provisionprofile
+*.mobileprovision
+*.p12
+*.cer
 
 # Logs and local caches
 *.log
